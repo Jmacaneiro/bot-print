@@ -1,0 +1,23 @@
+const { build } = require('esbuild');
+const fs = require('fs-extra');
+
+// Run the build process
+build({
+  entryPoints: ['main.js'],
+  platform: 'node',
+  bundle: true,
+  minify: true,
+  target: 'node16',
+  outfile: 'bot-print/main.js' 
+  
+}).then(() => {
+  // Copy the templates and certificates folders to the dist directory
+  fs.copySync('./.env', 'bot-print/.env');
+  fs.copySync('./resources/SumatraPDF-3.4.6-32.exe', 'bot-print/SumatraPDF-3.4.6-32.exe');
+  fs.copySync('./resources/bot-print.bat', 'bot-print/bot-print.bat');
+  fs.copySync('./.env', 'bot-print-win/.env');
+  fs.copySync('./resources/SumatraPDF-3.4.6-32.exe', 'bot-print-win/SumatraPDF-3.4.6-32.exe');
+}).catch((err) => {
+    console.log(err);
+    process.exit(1)
+});

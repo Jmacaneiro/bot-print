@@ -1,0 +1,30 @@
+{
+  "name": "bot-printer",
+  "version": "1.0.0",
+  "description": "Deamon send all file in folder espeficique to queue print ",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main.js",
+    "build": "node wbuild.run",
+    "generate-exec":"node wbuild.run",
+    "build-win-exe": "node wbuild.run && pkg --config package.json --debug -t node16-win-x64,node16-win ./bot-print/main.js --output ./bot-print-win/bot-print"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.18.17",
+    "fs-extra": "^11.1.1",
+    "pdf-to-printer": "^5.6.0"
+  },
+  "pkg": {
+    "assets": [
+      "./node_modules/dotenv/**",
+      "./node_modules/graceful-fs/**",
+      "./node_modules/jsonfile/**",
+      "./node_modules/pdf-to-printer/**",
+      "./node_modules/universalify/**",
+      "./node_modules/.package-lock.json"
+    ]
+  }
+}
